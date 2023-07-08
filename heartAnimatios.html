@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hear Animation</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            height: 100vh;
+            box-sizing:border-box;
+            background:#000;
+        }
+        span{
+            background:url("https://cdn4.iconfinder.com/data/icons/medical-115/60/medical-flat-098-heart-beat-512.png");
+            height:100px;
+            width: 100px;
+            pointer-events:none;
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-size: cover;
+            animation: animate  6s linear;
+        }
+        @keyframes animate{
+            0%{
+               transform: translate(-50%, 50%);
+               opacity: 1;
+               filter:hue-rotate(0);
+            }
+            100%{
+               transform: translate(-50%, 5000%);
+               opacity: 0;
+               filter:hue-rotate(720deg);
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <span></span> -->
+    <script>
+        const bodyEl=document.querySelector("body");
+        bodyEl.addEventListener("mousemove",(e)=>{
+            const yPositiony=e.offsetY;
+            const xPosition=e.offsetX;
+
+            const createEL=document.createElement("span");
+            createEL.style.top=yPositiony+"px";
+            createEL.style.left=xPosition+"px";
+            bodyEl.appendChild(createEL);
+           const randomNumEl=Math.random()*100;
+           createEL.style.width=randomNumEl+"px";
+           createEL.style.height=randomNumEl+"px";
+            setTimeout(()=>{
+             createEL.remove()
+            },3000)
+        })
+    </script>
+</body>
+</html>
